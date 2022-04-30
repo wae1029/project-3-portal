@@ -12,7 +12,7 @@ public class Teleporter : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             Player.transform.position = TeleportTo.transform.position;
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
     }
 }
