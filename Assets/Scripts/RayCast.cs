@@ -32,7 +32,7 @@ public class RayCast : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
             {
-            Destroy(prefab);
+            //Destroy(prefab);
             Instantiate(prefab, hit.point, Quaternion.identity);
             Debug.Log("Hit something");
             }
