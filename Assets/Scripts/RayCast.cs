@@ -7,6 +7,8 @@ public class RayCast : MonoBehaviour
     //fire range 
     public float range = 20f;
     public GameObject prefab;
+    private GameObject activeTeleporter;
+    
     //fire and impact effect 
     //public ParticleSystem fire;
     //public GameObject impactEffect;
@@ -32,8 +34,15 @@ public class RayCast : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range, layerMask))
             {
+            if(activeTeleporter != null) {
+                Destroy(activeTeleporter);
+            }
             //Destroy(prefab);
-            Instantiate(prefab, hit.point, Quaternion.identity);
+            Rigidbody rb = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            activeTeleporter = rb.gameObject;
+
+            //Instantiate(prefab, hit.point, Quaternion.identity);
             Debug.Log("Hit something");
             }
         else
